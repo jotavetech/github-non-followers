@@ -1,9 +1,5 @@
 import githubApi from "./githubApi";
 
-interface UserProps {
-  login: string;
-}
-
 async function getAllFollowers(username: string) {
   let followersData: string[] = [];
   let page = 1;
@@ -48,4 +44,10 @@ async function getAllFollowing(username: string) {
   return followingData;
 }
 
-export { getAllFollowers, getAllFollowing };
+async function getGithubProfile(username: string) {
+  const { data }: { data: UserProfileProps } = await githubApi(`/${username}`);
+
+  return data;
+}
+
+export { getAllFollowers, getAllFollowing, getGithubProfile };

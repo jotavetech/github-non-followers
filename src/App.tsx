@@ -80,6 +80,11 @@ function App() {
             </div>
           </div>
         )}
+        {!user && !loading && (
+          <h1 className="capitalize font-bold text-lg w-60 text-center mx-auto pb-2">
+            write a username to track non-followers
+          </h1>
+        )}
         <div className="flex gap-2 shadow-sm p-5 bg-slate-50 rounded-xl transition-all">
           {loading ? (
             <p className="font-semibold">Loading...</p>

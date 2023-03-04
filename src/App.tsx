@@ -39,7 +39,7 @@ function App() {
         );
 
         if (newNonFollowers.length === 0) {
-          setNotFind("No unfollowers found");
+          setNotFind("No unfollowers found! 😊");
         }
 
         return newNonFollowers;

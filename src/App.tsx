@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import Footer from "./components/Footer/Footer";
+import SearchField from "./components/SearchField";
 import UserPreview from "./components/UserPreview";
 import NonFollowerCard from "./components/NonFollowerCard";
 
@@ -9,7 +10,6 @@ import {
   getAllFollowing,
   getGithubProfile,
 } from "./githubData";
-import SearchField from "./components/SearchField";
 
 function App() {
   const [username, setUsername] = useState("");

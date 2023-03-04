@@ -21,7 +21,7 @@ function SearchField({
       <button
         disabled={!username}
         onClick={handleCompare}
-        className="bg-blue-400 p-2 rounded-xl text-white font-semibold disabled:opacity-80"
+        className="bg-blue-400 p-2 rounded-xl text-white font-semibold disabled:opacity-80 hover:bg-blue-600 transition-colors"
         aria-label="Search github by username"
       >
         🔎

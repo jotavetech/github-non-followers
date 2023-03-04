@@ -1,12 +1,15 @@
 import { useState } from "react";
 
+import Footer from "./components/Footer/Footer";
+import UserPreview from "./components/UserPreview";
+import NonFollowerCard from "./components/NonFollowerCard";
+
 import {
   getAllFollowers,
   getAllFollowing,
   getGithubProfile,
 } from "./githubData";
-
-import { AiFillGithub } from "react-icons/ai";
+import SearchField from "./components/SearchField";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -55,31 +58,7 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-300 flex justify-center items-center p-10">
       <div className="flex flex-col ">
-        {user && (
-          <div className="mx-auto mt-10 mb-5 flex flex-col items-center">
-            <a
-              href={`https://github.com/${username}`}
-              target="_blank"
-              aria-label={`link to ${username} github profile`}
-            >
-              <img
-                src={user.avatar_url}
-                alt={`${username} profile picture`}
-                className="w-36 rounded-full"
-              />
-            </a>
-            <p className="font-semibold text-lg">{user.login}</p>
-            <p className="font-medium text-md text-gray-700">{user.name}</p>
-            <div className="flex gap-2">
-              <div className="text-slate-700">
-                Followers: <span className="font-bold">{user.followers}</span>
-              </div>
-              <div className="text-slate-700">
-                Following: <span className="font-bold">{user.following}</span>
-              </div>
-            </div>
-          </div>
-        )}
+        {user && <UserPreview user={user} />}
         {!user && !loading && (
           <h1 className="capitalize font-bold text-lg w-60 text-center mx-auto pb-2">
             write a username to track non-followers
@@ -94,23 +73,11 @@ function App() {
           {loading ? (
             <p className="font-semibold">Loading...</p>
           ) : (
-            <>
-              <input
-                type="text"
-                placeholder="Github username"
-                className="p-2 outline-none font-semibold rounded-xl"
-                onChange={({ target }) => setUsername(target.value)}
-                value={username}
-              />
-              <button
-                disabled={!username}
-                onClick={handleCompare}
-                className="bg-blue-400 p-2 rounded-xl text-white font-semibold disabled:opacity-80"
-                aria-label="Search github by username"
-              >
-                🔎
-              </button>
-            </>
+            <SearchField
+              handleCompare={handleCompare}
+              username={username}
+              setUsername={setUsername}
+            />
           )}
         </div>
         {error && (
@@ -121,33 +88,11 @@ function App() {
         <div className="flex flex-col gap-2 mt-5 mb-10">
           {nonFollowers &&
             nonFollowers.map((user) => (
-              <a
-                href={`https://github.com/${user}`}
-                target="_blank"
-                className="shadow-sm p-5 bg-slate-100 rounded-xl flex justify-between items-center animated-slide-in cursor-pointer"
-                key={user}
-              >
-                <span className="font-semibold">{user}</span>
-                <div className="flex gap-2 items-center">
-                  <span className="text-sm font-semibold text-gray-600">
-                    Visit profile
-                  </span>
-                  <AiFillGithub />
-                </div>
-              </a>
+              <NonFollowerCard user={user} key={user} />
             ))}
         </div>
       </div>
-      <footer className="fixed bottom-0 w-full bg-gray-600 h-8 flex items-center justify-center">
-        <a
-          href="https://github.com/jaoincode"
-          target="_blank"
-          className="text-white font-semibold"
-          aria-label="jaoincode github link"
-        >
-          @jaoincode ❤️
-        </a>
-      </footer>
+      <Footer />
     </div>
   );
 }

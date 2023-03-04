@@ -16,3 +16,22 @@
 .animated-slide-in {
   animation: slideInFromLeft 0.5s ease-in-out;
 }
+
+.tremor {
+  animation: tremor 0.5s forwards;
+}
+
+@keyframes tremor {
+  0% {
+    transform: translate(-4px);
+  }
+  20% {
+    transform: translateX(4px);
+  }
+  80% {
+    transform: translatex(-4px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}

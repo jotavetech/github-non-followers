@@ -85,7 +85,12 @@ function App() {
             write a username to track non-followers
           </h1>
         )}
-        <div className="flex gap-2 shadow-sm p-5 bg-slate-50 rounded-xl transition-all">
+        <div
+          className={`flex gap-2 shadow-sm p-5 bg-slate-50 rounded-xl transition-all ${
+            error && "tremor"
+          } 
+          `}
+        >
           {loading ? (
             <p className="font-semibold">Loading...</p>
           ) : (

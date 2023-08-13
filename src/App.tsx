@@ -56,7 +56,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-300 flex justify-center items-center p-10">
+    <div className="min-h-screen bg-zinc-100 flex justify-center items-center p-10">
       <div className="flex flex-col ">
         {user && <UserPreview user={user} />}
         {!user && !loading && (
